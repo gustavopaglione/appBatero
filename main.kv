@@ -1,0 +1,104 @@
+#: import SwapTransition kivy.uix.screenmanager.SwapTransition
+
+<Ui>:
+    transition: SwapTransition()
+    MDScreen:
+        name:'login'
+        md_bg_color:0,0,0,1
+        MDBoxLayout:
+            orientation:'vertical'
+            spacing:db(12)
+            padding: dp(12)
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint_y: 0.3
+                Image:
+                    source:'logo.png'
+                    pos_hint: ('center_x':0.5)
+                MDLabel:
+                    text: 'Iniciar Secion'
+                    halign: 'center'
+                    color: '#FFSA1E'
+                    font_size: dp(28)
+                    bold: True
+                    pos_hint: {'center_y': .5}
+            MDBoxLayout:
+                orientation:'vertical'
+                size_hint_y:0.3
+                spacing: dp(12)
+                MDTextField:
+                    id: user
+                    hint_text: "Nombre de usuario"
+                    icon_right: "account"
+                    font_size: dp(20)
+                    icon_right_color: '#FF5A1E'
+                    pos_hint: {'center_x':0.5}
+                MDTextField:
+                    id: password
+                    password: True
+                    icon_right: "key-variant"
+                    font_size: dp(20)
+                     icon_right_color: '#FF5A1E'
+                    hint_text: "Contraseña"
+                    pos_hint: {'center_x':0.5}
+                MDLabel:
+                    id: signal_login
+                    text: ''
+                    halign: 'center'
+                    color: '#FF5A1E'
+                    font_size: dp(15)
+            MDBoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: 0.4
+                    spacing:dp(15)
+                    MDFillRoundFlatButton:
+                        id: bt_ingresar
+                        text: 'Ingresar'
+                        pos_hint: {'center_x':0.5}
+                        on_release:
+                            x = app.login_data()
+                            root.current = 'open_screen' if x == True else None
+                    MDFillRoundFlatButton:
+                        md_bg_color:'#000000'
+                        text_color: 255/255, 90/255, 30/255,1
+                        text: 'Crear cuenta'
+                        font_size:dp(20)
+                        pos_hint: ('center_x':0.5)
+                        on_release:root.current= 'screen_register'
+                        
+#pantalla login#
+    MDScreen:
+        name: 'open_screen'
+        md_bg_color: 255/255, 90/255, 30/255,1
+        MDBoxLayout:
+            orientation: 'vertical'
+            padding: dp(12)
+            spacing: dp(12)
+            MDFillRoundFlatButton:
+                icon: 'arrow-left'
+                color_icon: '#000000'
+                on_release: root.current = 'login'
+
+#Pantalla Registro#
+    MDScreen:
+        name: 'screen_register'
+        md_bg_color: 0,0,0,1
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            padding: dp(12)
+            spacing: dp(12)
+            MDBoxLayout:
+                orientation:'horizontal'
+                size_hint: 1, 0.2
+                MDFillRoundFlatButton:
+                icon: 'arrow-left'
+                pos_hint: {'center_y:0.5}
+                on_release:
+                    root.current = 'login'
+                    app.clear_signal()
+                
+                MDLabel:
+                    text: 'Crear Cuenta'
+                    halign: 'center'
+                    color: #
